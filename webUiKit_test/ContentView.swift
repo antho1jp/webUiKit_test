@@ -24,14 +24,19 @@ struct ViewControllerRepresentable: UIViewControllerRepresentable {
     }
 }
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    var openButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        createButton()
+    }
+    
+    func createButton() {
         // Create a button
-        let openButton = UIButton(type: .system)
+        openButton = UIButton(type: .system)
         openButton.setTitle("Open", for: .normal)
         openButton.addTarget(self, action: #selector(openButtonTapped), for: .touchUpInside)
         
@@ -41,6 +46,7 @@ class ViewController: UIViewController {
         // Add button to the view
         view.addSubview(openButton)
     }
+    
 
     @objc func openButtonTapped() {
         // URL to open in Safari
